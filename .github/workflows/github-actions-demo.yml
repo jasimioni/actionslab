@@ -17,5 +17,9 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+          date +%Y%m%d%H%M > ${{ github.workspace }}/date-$(date +%Y%m%d%H%M)
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Changed files
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
