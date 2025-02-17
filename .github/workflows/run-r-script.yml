@@ -12,12 +12,12 @@ jobs:
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - name: Install dependencies
         run: |
-          apt install r-cran-furrr r-cran-future r-cran-future.apply r-cran-future.batchtools r-cran-lubridate r-cran-purrr r-cran-purrrlyr r-cran-purrrogress r-cran-readxl r-cran-tibble r-cran-tidyverse r-cran-littler -y
+          sudo apt install r-cran-furrr r-cran-future r-cran-future.apply r-cran-future.batchtools r-cran-lubridate r-cran-purrr r-cran-purrrlyr r-cran-purrrogress r-cran-readxl r-cran-tibble r-cran-tidyverse r-cran-littler -y
       - name: Run the script
         run: |
           cd ${{ github.workspace }}/r
-          r bacen_ETL.r
-          mv lake/credito.rdata lake/credito-$(+%Y%m%d%H%).rdata
+          sudo r bacen_ETL.r
+          sudo mv lake/credito.rdata lake/credito-$(+%Y%m%d%H%).rdata
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Updated files
