@@ -1,0 +1,25 @@
+name: Run R script
+run-name: ${{ github.actor }} is testing running an R script
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Install dependencies
+        run: |
+          apt install r-cran-furrr r-cran-future r-cran-future.apply r-cran-future.batchtools r-cran-lubridate r-cran-purrr r-cran-purrrlyr r-cran-purrrogress r-cran-readxl r-cran-tibble r-cran-tidyverse r-cran-littler -y
+      - name: Run the script
+        run: |
+          cd ${{ github.workspace }}/r
+          r bacen_ETL.r
+          mv lake/credito.rdata lake/credito-$(+%Y%m%d%H%).rdata
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Updated files
+      - run: echo "This job's status is ${{ job.status }}."
+
