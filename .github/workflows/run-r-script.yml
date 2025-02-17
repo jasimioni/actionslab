@@ -18,7 +18,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}/r
           sudo r bacen_ETL.r
-          sudo mv lake/credito.rdata lake/credito-$(+%Y%m%d%H%).rdata
+          sudo mv lake/credito.rdata lake/credito-$(date +%Y%m%d%H%).rdata
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Updated files
