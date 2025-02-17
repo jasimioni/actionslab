@@ -6,6 +6,8 @@ on:
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -17,8 +19,13 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Create file in repository
+        run: |
           date +%Y%m%d%H%M > ${{ github.workspace }}/date-$(date +%Y%m%d%H%M)
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: List files in the repository after
+        run: |
+          ls ${{ github.workspace }}
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Changed files
       - run: echo "🍏 This job's status is ${{ job.status }}."
