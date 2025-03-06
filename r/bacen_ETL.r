@@ -1,16 +1,40 @@
-# CLEAR ENVIRONMENT ####
+# CLEAR ENVIRONMENT ############################################################
 
-# FUNCTIONS ####################################################################
+# Remove all objects from the environment
+rm(list = ls())
 
-source(
-  "functions.R"
-)
+# Run garbage collection
+gc()
 
-# INSTALL AND LOAD PACKAGES ####
+# INSTALL AND LOAD PACKAGES ####################################################
 
-install_and_load_packages('GetBCBData', 'dplyr', 'tidyr')
+# packages = c(
+#   'GetBCBData',
+#   'openxlsx',
+#   'tidyverse')
+# 
+# 
+# for (pkg in packages) {
+#   if (!require(pkg, character.only = TRUE)) {
+#     install.packages(pkg, repos = "https://cran.rstudio.com/", method = "libcurl")
+#   } 
+#   library(pkg, character.only = TRUE)
+# }
 
-# TIME CONTROL ####
+# LOAD PACKAGES ################################################################
+
+packages = c(
+  'GetBCBData',
+  'openxlsx',
+  'dplyr', 'tidyr'
+  )
+
+for (pkg in packages) {
+  library(pkg, character.only = TRUE)
+}
+
+# TIME CONTROL #################################################################
+
 
 # Record the start time
 start_time <- Sys.time()
