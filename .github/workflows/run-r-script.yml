@@ -1,11 +1,6 @@
 name: Run R script
 run-name: ${{ github.actor }} is running an R script to parse BCB data
 on: 
-  schedule:
-    - cron: '0 7 * * *'
-    - cron: '0 7 25 3 *'
-    - cron: '0 7 22 4 *'
-    - cron: '0 7 19 5 *'
   workflow_dispatch:
 jobs:
   Explore-GitHub-Actions:
